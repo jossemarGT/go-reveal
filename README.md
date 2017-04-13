@@ -9,6 +9,7 @@ Honoring the [Readme Driven Development](http://tom.preston-werner.com/2010/08/2
 - [ ] Read markdown file and serve it as reveal.js slide deck.
 - [ ] Allow to override default configurations with flags, env variables or yaml/rc files.
 - [ ] Render demo page with brief explanation.
+- [ ] Add presenter notes support
 - [ ] Allow to change the reveal.js theme with any of the stock ones.
 - [ ] Add slide and section modifiers as metadata or comment. Ex.: `.element: class="fragment"`
 - [ ] Offline mode - Bundle reveal.js latest version as part of the package.
@@ -31,5 +32,5 @@ Honoring the [Readme Driven Development](http://tom.preston-werner.com/2010/08/2
 Short and simple, there's **nothing** wrong with deck but I'm pretty much used to [reveal-md](https://github.com/webpro/reveal-md), so I want to mimic its behavior in a self contained tool.
 
 - Why did you write a tool instead of getting [reveal-md](https://github.com/webpro/reveal-md) inside a docker container?
-  - For fun
   - In a scenario with a poor bandwith to download a `alpine + node.js + reveal-md (+ deps)` docker image is a **bad idea** and you still need a docker-engine up 'n running in the machine that you're going to use. I just want something to carry with me in any external storage device, be able to plug-in it and start the presentation right away.
+  - And for fun
