@@ -42,8 +42,8 @@ func NewTokenizer(separator string, verticalSeparator string, noteKeyword string
 
 //Section holds markdown content, speaker notes and Section children
 type Section struct {
-	content  string
-	children *[]Section
+	Content  string
+	Children *[]Section
 }
 
 //Tokenizer transforms
@@ -67,6 +67,7 @@ type defaultTokenizer struct {
 	noteKeyword    *regexp.Regexp
 }
 
+//Sections Parses raw input byte slice and returns an slice of Sections
 func (t *defaultTokenizer) Sections(raw []byte) (rs []Section) {
 	rs = []Section{}
 	i := t.slideSeparator.FindIndex(raw)
@@ -75,8 +76,8 @@ func (t *defaultTokenizer) Sections(raw []byte) (rs []Section) {
 	var isHorizontal bool
 
 	for len(i) > 0 {
-		//TODO Extract presenter notes from content in advance
-		s = Section{content: string(raw[:i[0]-1])}
+		//TODO: Extract presenter notes from content in advance
+		s = Section{Content: string(raw[:i[0]-1])}
 
 		isHorizontal = t.isHorizontalSeparator(raw[i[0]:i[1]])
 
@@ -84,11 +85,11 @@ func (t *defaultTokenizer) Sections(raw []byte) (rs []Section) {
 			rs = append(rs, s)
 		} else {
 			if wasHorizontal {
-				tmpHead := Section{content: "This shouldn't be shown in the slides", children: &[]Section{s}}
+				tmpHead := Section{Content: "This shouldn't be shown in the slides", Children: &[]Section{s}}
 				rs = append(rs, tmpHead)
 			} else {
 				tmpHead := rs[len(rs)-1]
-				*tmpHead.children = append(*tmpHead.children, s)
+				*tmpHead.Children = append(*tmpHead.Children, s)
 			}
 		}
 
@@ -98,13 +99,13 @@ func (t *defaultTokenizer) Sections(raw []byte) (rs []Section) {
 		wasHorizontal = isHorizontal
 	}
 
-	s = Section{content: string(raw)}
+	s = Section{Content: string(raw)}
 
 	if wasHorizontal {
 		rs = append(rs, s)
 	} else {
 		tmpHead := rs[len(rs)-1]
-		*tmpHead.children = append(*tmpHead.children, s)
+		*tmpHead.Children = append(*tmpHead.Children, s)
 	}
 
 	return

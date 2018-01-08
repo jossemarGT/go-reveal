@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>go-reveal - {{.Path}}</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/css/reveal.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/css/theme/black.css" id="theme">
+        <style>
+        .reveal { width: 960px; margin: 10% auto auto; }
+        .reveal ul { list-style-type: none; }
+        .reveal li { line-height: 1.2; }
+        </style>
+    </head>
+    <body>
+
+        <div class="reveal">
+            {{- if .Files}}
+            <ul>
+                {{- range .Files }}
+                <li><a href="/{{.Relpath}}">{{.Name}}</a></li>
+                {{- end}}
+            </ul>
+            {{- end}}
+        </div>
+
+    </body>
+</html>

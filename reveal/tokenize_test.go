@@ -36,12 +36,12 @@ func TestSections(t *testing.T) {
 		}
 
 		for i, ss := range s {
-			if ss.children == nil && tt.childrenCount[i] > 0 {
+			if ss.Children == nil && tt.childrenCount[i] > 0 {
 				t.Errorf("Content node #%d has no children, expected %d", i, tt.childrenCount[i])
 			}
 
-			if ss.children != nil && (len(*ss.children) != tt.childrenCount[i]) {
-				t.Errorf("Content node #%d children count missmatch, expected %d, got %d", i, tt.childrenCount[i], len(*ss.children))
+			if ss.Children != nil && (len(*ss.Children) != tt.childrenCount[i]) {
+				t.Errorf("Content node #%d children count missmatch, expected %d, got %d", i, tt.childrenCount[i], len(*ss.Children))
 			}
 		}
 	}

@@ -1,3 +1,9 @@
-.vscode
+# Binaries
+/go-reveal
 debug*
+
+# Dependencies 
 vendor
+
+# IDE and backups
+.vscode
